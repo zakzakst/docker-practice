@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS sampledb;
+
 USE sampledb;
 
 CREATE TABLE IF NOT EXISTS users (

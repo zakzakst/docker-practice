@@ -1,4 +1,5 @@
 # PHP勉強
+# docker compose up -d --build
 services:
   php:
     image: php:8.2-apache
@@ -9,3 +10,29 @@ services:
         target: /var/www/html
     ports:
       - "8080:80"
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:9.4.0
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - type: volume
+        source: db_data
+        target: /var/lib/mysql
+      - type: bind
+        source: ./seeds
+        target: /docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 5
+
+volumes:
+  db_data:
