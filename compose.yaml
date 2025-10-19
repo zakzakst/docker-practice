@@ -8,10 +8,14 @@ services:
     container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: sampledb
     volumes:
       - type: volume
         source: db_data
         target: /var/lib/mysql
+      - type: bind
+        source: ./seeds
+        target: /docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
 
