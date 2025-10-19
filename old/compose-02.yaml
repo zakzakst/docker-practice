@@ -1,0 +1,7 @@
+# 6.1 Ubuntuコンテナを起動する（上手くLinuxコマンドの表示に移行されない）
+services:
+  ubuntu:
+    image: ubuntu
+    tty: true
+    stdin_open: true
+    command: bash
