@@ -1,19 +1,12 @@
-# MySQL勉強
+# 10.1 MySQLサーバを起動する
 # 起動後に下記とか利用して理解を深める
 # - docker exec -it db mysql -u root -p
 # - docker exec -it db bash
 services:
   db:
-    image: mysql:9.4.0
+    image: mysql
     container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: secret
-    volumes:
-      - type: volume
-        source: db_data
-        target: /var/lib/mysql
     ports:
       - "3306:3306"
-
-volumes:
-  db_data:

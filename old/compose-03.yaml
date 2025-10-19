@@ -1,0 +1,6 @@
+# 9.1 Nginxコンテナを起動してポートを公開する
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "8080:80"
